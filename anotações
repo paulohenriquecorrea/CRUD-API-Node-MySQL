@@ -1,0 +1,32 @@
+Padrão de projetos
+===================
+
+  apiCarro
+    src        // folder
+      server.js // arquivo javascript
+      routes.js // rotas da API
+      controllers
+        CarroController.js
+      services
+        CarroService.js // Aqui ficam as regras e comandos do banco de dados
+    variaveis.env // arquivo de configuração
+
+Instalações
+===================
+
+  npm init -y
+
+  npm install express mysql dotenv cors body-parser
+
+  npm install nodemon --save-dev
+
+  Dependencias explicação
+  =======================
+
+  express = framewrk para criação de aplicativos web e aplicativos
+
+  dotenv = server para ler arquivos .env
+
+  cors = especificação da w3c para trabalhar com API, acesso a outros sites mesmo estando em domínios diferentes
+
+  body-parser = módulo que converte o body de uma requisição para outros formatos
