@@ -9,4 +9,10 @@ router.post('/carro', CarroController.inserir);
 router.put('/carro/:codigo', CarroController.alterar);
 router.delete('/carro/:codigo', CarroController.deletar);
 
+const path = require('path');
+router.get('/', (req, res) => {
+  const carroPath = path.join(__dirname, '/views/index.html');
+  res.sendFile(carroPath);
+});
+
 module.exports = router;
