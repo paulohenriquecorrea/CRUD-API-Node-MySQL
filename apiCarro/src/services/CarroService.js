@@ -14,38 +14,32 @@ module.exports = {
   },
 
   buscarUm: (codigo) => {
+    const query = 'SELECT * FROM carros WHERE codigo = ?';
     return new Promise((resolve, reject) => {
-      db.query(
-        'SELECT * FROM carros WHERE codigo = ?',
-        [codigo],
-        (error, results) => {
-          if (error) {
-            reject(error);
-            return;
-          }
-          if (results.length > 0) {
-            resolve(results[0]);
-          } else {
-            resolve(false);
-          }
+      db.query(query, [codigo], (error, results) => {
+        if (error) {
+          reject(error);
+          return;
         }
-      );
+        if (results.length > 0) {
+          resolve(results[0]);
+        } else {
+          resolve(false);
+        }
+      });
     });
   },
 
   inserir: (modelo, placa) => {
+    const query = 'INSERT INTO carros (modelo, placa) VALUES (?, ?)';
     return new Promise((resolve, reject) => {
-      db.query(
-        'INSERT INTO carros (modelo, placa) VALUES (?, ?)',
-        [modelo, placa],
-        (error, results) => {
-          if (error) {
-            reject(error);
-            return;
-          }
-          resolve(results.insertId);
+      db.query(query, [modelo, placa], (error, results) => {
+        if (error) {
+          reject(error);
+          return;
         }
-      );
+        resolve(results.insertId);
+      });
     });
   },
 
@@ -67,19 +61,15 @@ module.exports = {
   },
 
   deletar: (codigo) => {
+    const query = 'DELETE FROM carros WHERE codigo = ?';
     return new Promise((resolve, reject) => {
-      db.query(
-        'DELETE FROM carros WHERE codigo = ?',
-        [codigo],
-        (error, results) => {
-          if (error) {
-            reject(error);
-            return;
-          } else {
-            resolve(results);
-          }
+      db.query(query, [codigo], (error, results) => {
+        if (error) {
+          reject(error);
+          return;
         }
-      );
+        resolve(results);
+      });
     });
   },
 };
